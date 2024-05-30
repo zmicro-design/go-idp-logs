@@ -1,0 +1,25 @@
+services:
+  go-idp-logs:
+    restart: always
+    image: whatwewant/go-idp-logs:${SERVICE_GO_IDP_LOGS_IMAGE_VERSION}
+    ports:
+      - 0.0.0.0:${SERVICE_GO_IDP_LOGS_PORT}:8080
+    privileged: true
+    environment:
+      USERNAME: ${SERVICE_GO_IDP_LOGS_USERNAME}
+      PASSWORD: ${SERVICE_GO_IDP_LOGS_PASSWORD}
+      #
+      STORAGE_DRIVER: ${SERVICE_GO_IDP_LOGS_STORAGE_DRIVER}
+      STORAGE_ROOT_DIR: ${SERVICE_GO_IDP_LOGS_STORAGE_ROOT_DIR}
+      #
+      STORAGE_OSS_ACCESS_KEY_ID: ${SERVICE_GO_IDP_LOGS_STORAGE_OSS_ACCESS_KEY_ID}
+      STORAGE_OSS_ACCESS_KEY_SECRET: ${SERVICE_GO_IDP_LOGS_STORAGE_OSS_ACCESS_KEY_SECRET}
+      STORAGE_OSS_BUCKET: ${SERVICE_GO_IDP_LOGS_STORAGE_OSS_BUCKET}
+      STORAGE_OSS_ENDPOINT: ${SERVICE_GO_IDP_LOGS_STORAGE_OSS_ENDPOINT}
+    mem_limit: ${SERVICE_GO_IDP_LOGS_MEM_LIMIT}
+    cpus: ${SERVICE_GO_IDP_LOGS_CPU_LIMIT}
+      
+networks:
+  default:
+    external: true
+    name: compose-ingress

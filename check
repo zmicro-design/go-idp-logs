@@ -1,0 +1,27 @@
+#!/bin/bash
+
+service::config_set() {
+  config::check_or_set $1 $2 $SERVICE_CONFIG "${@:3}"
+}
+
+check() {
+  if [ "$DEBUG" = "true" ]; then
+    log::info "[DEBUG][service]: $SERVICE_CONFIG"
+    cat $SERVICE_CONFIG
+  fi
+
+  service::config_set SERVICE_GO_IDP_LOGS_PORT text "Port" 8080
+
+  # service::config_set SERVICE_GO_IDP_LOGS_USERNAME text "Username"
+  # service::config_set SERVICE_GO_IDP_LOGS_PASSWORD text "Password"
+
+  service::config_set SERVICE_GO_IDP_LOGS_STORAGE_DRIVER text "Storage Driver"
+  service::config_set SERVICE_GO_IDP_LOGS_STORAGE_ROOT_DIR "text" "Storage Root DIR"
+
+  service::config_set SERVICE_GO_IDP_LOGS_STORAGE_OSS_ACCESS_KEY_ID text "OSS Access Key ID"
+  service::config_set SERVICE_GO_IDP_LOGS_STORAGE_OSS_ACCESS_KEY_SECRET text "OSS Access Key Secret"
+  service::config_set SERVICE_GO_IDP_LOGS_STORAGE_OSS_BUCKET text "OSS Bucket"
+  service::config_set SERVICE_GO_IDP_LOGS_STORAGE_OSS_ENDPOINT text "OSS Endpoint"
+}
+
+check $@

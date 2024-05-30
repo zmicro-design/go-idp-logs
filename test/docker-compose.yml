@@ -1,0 +1,13 @@
+services:
+  go-idp-logs:
+    restart: always
+    image: whatwewant/go-idp-logs:${SERVICE_GO_IDP_LOGS_IMAGE_VERSION}
+    privileged: true
+    environment:
+      CAAS_USERNAME: ${SERVICE_GO_IDP_LOGS_USERNAME}
+      CAAS_PASSWORD: ${SERVICE_GO_IDP_LOGS_PASSWORD}
+      
+networks:
+  default:
+    external: true
+    name: compose-ingress
