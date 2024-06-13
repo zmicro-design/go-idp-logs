@@ -1,7 +1,7 @@
 services:
   go-idp-logs:
     restart: always
-    image: whatwewant/go-idp-logs:${SERVICE_GO_IDP_LOGS_IMAGE_VERSION}
+    image: ${SERVICE_IMAGE_REGISTRY}/whatwewant/go-idp-logs:${SERVICE_GO_IDP_LOGS_IMAGE_VERSION}
     ports:
       - 0.0.0.0:${SERVICE_GO_IDP_LOGS_PORT}:8080
     privileged: true
